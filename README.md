@@ -17,3 +17,8 @@ Skills practiced:
 Tools Used:
 - MySQL
 - MySQL Workbench
+
+
+## Top Customers Query Result
+
+![Top Customers](screenshots/top_customers.png)
