@@ -1,0 +1,102 @@
+--  1. view all customers
+SELECT *
+FROM customer;
+
+
+-- 2. show customer names and emails
+SELECT first_name,
+       last_name,
+       email
+FROM customer;
+
+-- 3. find active customers
+SELECT first_name,
+       last_name,
+       active
+FROM customer
+WHERE active = 1;
+
+-- 4. Sort Customers Alphabetically
+SELECT first_name,
+       last_name
+FROM customer
+ORDER BY last_name ASC;
+
+-- 5. Show top 10 movies
+SELECT title,
+       release_year
+FROM film
+LIMIT 10;
+
+-- 6. Find Movies Longer Than 120 Minutes
+SELECT title,
+       length
+FROM film
+WHERE length > 120;
+
+
+-- 7. Count Total Customers
+SELECT COUNT(*) AS total_customers
+FROM customer;
+
+
+-- 8. Find Average Movie Rental Rate
+SELECT AVG(rental_rate) AS average_rental_rate
+FROM film;
+
+
+-- 9. Show Movies Rated PG
+SELECT title,
+       rating
+FROM film
+WHERE rating = 'PG';
+
+
+-- 10. Find Total Revenue
+SELECT SUM(amount) AS total_revenue
+FROM payment;
+
+
+-- 11. Top Customers by Spending
+
+SELECT customer_id,
+       SUM(amount) AS total_spent
+FROM payment
+GROUP BY customer_id
+ORDER BY total_spent DESC;
+
+
+-- 12. Count Movies by Rating
+SELECT rating,
+       COUNT(*) AS total_movies
+FROM film
+GROUP BY rating;
+
+
+-- 13. Basic JOIN Query
+
+SELECT c.first_name,
+       c.last_name,
+       r.rental_date
+FROM customer c
+JOIN rental r
+ON c.customer_id = r.customer_id
+order by rental_date desc
+
+
+-- 14. Find Most Rented Movies
+SELECT f.title,
+       COUNT(*) AS rental_count
+FROM film f
+JOIN inventory i
+ON f.film_id = i.film_id
+JOIN rental r
+ON i.inventory_id = r.inventory_id
+GROUP BY f.title
+ORDER BY rental_count DESC;
+
+
+-- 15. Find Customers With Missing Address2
+SELECT *
+FROM address
+WHERE address2 IS NULL;
