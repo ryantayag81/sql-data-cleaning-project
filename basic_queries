@@ -81,7 +81,7 @@ SELECT c.first_name,
 FROM customer c
 JOIN rental r
 ON c.customer_id = r.customer_id;
-
+order by rental_date desc
 
 -- 14. Find Most Rented Movies
 SELECT f.title,
