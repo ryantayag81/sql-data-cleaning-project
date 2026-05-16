@@ -62,5 +62,5 @@ ORDER BY
 
 ### Result
 
-![Monthly Revenue](monthly_revenue.png)
+![Monthly Revenue](monthly_revenue.PNG)
 
