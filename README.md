@@ -21,4 +21,4 @@ Tools Used:
 
 ## Top Customers Query Result
 
-![Top Customers Query Result](screenshots/Top_Customers_spending.png)
+![Top Customers Query Result](Top_Customers_spending.png)
