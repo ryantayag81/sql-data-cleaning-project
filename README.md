@@ -19,7 +19,6 @@ Tools Used:
 - MySQL Workbench
 
 
-## Top Customers Query Result
 # Top Customers Analysis
 
 ## Objective
