@@ -34,7 +34,33 @@ GROUP BY customer_id
 ORDER BY total_spent DESC;
 ```
 
+
 ## Query Result
 ![Top Customers Query](top_customers_spending.PNG)
 
+
+## Monthly Revenue
+
+### Objective
+Find total revenue by month.
+
+### SQL Query
+
+```sql
+SELECT 
+    YEAR(payment_date) AS year,
+    MONTH(payment_date) AS month,
+    SUM(amount) AS monthly_revenue
+FROM payment
+GROUP BY 
+    YEAR(payment_date),
+    MONTH(payment_date)
+ORDER BY 
+    year,
+    month;
+```
+
+### Result
+
+![Monthly Revenue](monthly_revenue.png)
 
