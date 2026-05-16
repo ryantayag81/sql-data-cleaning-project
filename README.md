@@ -20,7 +20,22 @@ Tools Used:
 
 
 ## Top Customers Query Result
+# Top Customers Analysis
 
+## Objective
+Find the customers who spent the most money.
+
+## SQL Query
+
+```sql
+SELECT customer_id,
+       SUM(amount) AS total_spent
+FROM payment
+GROUP BY customer_id
+ORDER BY total_spent DESC;
+```
+
+## Query Result
 ![Top Customers Query](top_customers_spending.PNG)
 
 
