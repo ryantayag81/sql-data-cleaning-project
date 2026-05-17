@@ -64,3 +64,76 @@ ORDER BY
 
 ![Monthly Revenue](monthly_revenue.PNG)
 
+
+# Duplicate Detection in Customer Table
+
+## Objective
+Identify duplicate customer records in the customer table using SQL.
+
+---
+
+# Method 1 — Basic Duplicate Detection
+
+This method uses `GROUP BY` and `HAVING` to identify duplicate email addresses.
+
+### SQL Query
+
+```sql
+SELECT 
+    email,
+    COUNT(*) AS duplicate_count
+FROM customer
+GROUP BY email
+HAVING COUNT(*) > 1;
+```
+
+### Explanation
+
+- `GROUP BY email` groups matching email addresses together
+- `COUNT(*)` counts how many times each email appears
+- `HAVING COUNT(*) > 1` filters only duplicate records
+
+This is the simplest and most common beginner method for detecting duplicates.
+
+---
+
+# Method 2 — Advanced Duplicate Detection Using Self Join
+
+Since MySQL 5.7 does not support `ROW_NUMBER()` window functions, a self join was used to identify the duplicate rows directly.
+
+### SQL Query
+
+```sql
+SELECT 
+    c1.customer_id,
+    c1.first_name,
+    c1.last_name,
+    c1.email
+FROM customer c1
+JOIN customer c2
+    ON c1.email = c2.email
+   AND c1.customer_id > c2.customer_id;
+```
+
+### Explanation
+
+- The table is joined to itself using matching email addresses
+- `c1.customer_id > c2.customer_id` keeps the lower customer ID as the original record
+- The higher customer IDs are treated as duplicates
+
+This method is more advanced because it identifies the actual duplicate rows instead of only counting them.
+
+---
+
+# Skills Demonstrated
+
+- GROUP BY
+- HAVING
+- COUNT
+- Self Join
+- Duplicate Detection
+- Data Cleaning
+- SQL Problem Solving
+
+```
+
