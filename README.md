@@ -144,3 +144,87 @@ This method is more advanced because it returns the specific duplicate rows inst
 - SQL Analysis
 
 ```
+
+# Removing Duplicate Records from Customer Table
+
+## Objective
+Delete duplicate customer records while keeping the original record.
+
+---
+
+# Step 1 — Preview Duplicate Records
+
+Before deleting data, duplicate records were identified using a self join.
+
+### SQL Query
+
+```sql
+SELECT 
+    c1.customer_id,
+    c1.first_name,
+    c1.last_name,
+    c1.email
+FROM customer c1
+JOIN customer c2
+    ON c1.email = c2.email
+   AND c1.customer_id > c2.customer_id;
+```
+
+### Explanation
+
+- The table is joined to itself using matching email addresses
+- The lower `customer_id` is treated as the original record
+- Higher `customer_id` values are treated as duplicates
+
+---
+
+# Step 2 — Delete Duplicate Records
+
+### SQL Query
+
+```sql
+DELETE c1
+FROM customer c1
+JOIN customer c2
+    ON c1.email = c2.email
+   AND c1.customer_id > c2.customer_id;
+```
+
+### Explanation
+
+- Duplicate rows are deleted from alias `c1`
+- The query keeps the original record with the lower `customer_id`
+- Only duplicate customer records are removed
+
+---
+
+# Step 3 — Verify Duplicates Were Removed
+
+### SQL Query
+
+```sql
+SELECT 
+    email,
+    COUNT(*) AS duplicate_count
+FROM customer
+GROUP BY email
+HAVING COUNT(*) > 1;
+```
+
+### Expected Result
+
+- No rows returned
+- Confirms duplicate records were successfully removed
+
+---
+
+# Skills Demonstrated
+
+- Self Join
+- Duplicate Detection
+- DELETE with JOIN
+- Data Cleaning
+- Data Integrity Management
+- SQL Problem Solving
+
+```
