@@ -143,5 +143,4 @@ This method is more advanced because it returns the specific duplicate rows inst
 - Data Cleaning
 - SQL Analysis
 
-```
 
